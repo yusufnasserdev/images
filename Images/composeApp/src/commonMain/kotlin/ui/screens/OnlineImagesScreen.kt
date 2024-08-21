@@ -1,4 +1,4 @@
-package screens
+package ui.screens
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.calculateEndPadding
@@ -17,41 +17,41 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
-import navigation.events.LocalImagesScreenEvent
-import navigation.screenscomponents.LocalImagesScreenComponent
-import screens.util.AppTopBar
+import navigation.events.OnlineImagesScreenEvent
+import navigation.screenscomponents.OnlineImagesScreenComponent
+import ui.util.AppTopBar
 
 @Composable
-fun LocalImagesScreen(
-    component: LocalImagesScreenComponent,
+fun OnlineImagesScreen(
+    component: OnlineImagesScreenComponent,
     layoutDirection: LayoutDirection = LocalLayoutDirection.current
 ) {
-
     ModalNavigationDrawer(
         drawerContent = {
             ModalDrawerSheet {
                 Text("Screens", modifier = Modifier.padding(16.dp))
-
                 HorizontalDivider()
 
                 NavigationDrawerItem(
                     label = { Text(text = "Main Screen") },
                     selected = false,
-                    onClick = {component.onEvent(LocalImagesScreenEvent.NavToMainScreenButton)}
+                    onClick = {
+                        component.onEvent(OnlineImagesScreenEvent.NavToMainScreenButton)
+                    }
                 )
 
                 NavigationDrawerItem(
                     label = { Text(text = "Local Images") },
-                    selected = true,
-                    onClick = {}
+                    selected = false,
+                    onClick = {
+                        component.onEvent(OnlineImagesScreenEvent.NavToLocalImagesScreenButton)
+                    }
                 )
 
                 NavigationDrawerItem(
                     label = { Text(text = "Online Images") },
-                    selected = false,
-                    onClick = {
-                        component.onEvent(LocalImagesScreenEvent.NavToOnlineImagesScreenButton)
-                    }
+                    selected = true,
+                    onClick = {}
                 )
 
             }
@@ -60,7 +60,7 @@ fun LocalImagesScreen(
 
         Scaffold(
             modifier = Modifier.fillMaxSize(),
-            topBar = { AppTopBar(screenTitle = "Local Images") }
+            topBar = { AppTopBar(screenTitle = "Online Images") }
         ) { innerPadding ->
             Column(
                 modifier = Modifier
@@ -73,17 +73,16 @@ fun LocalImagesScreen(
                     )
             ) {
                 Text(
-                    text = "Local Images",
+                    text = "Online Images",
                     modifier = Modifier.weight(0.5f)
                 )
                 VerticalDivider(modifier = Modifier.weight(0.2f))
                 Text(
-                    text = "More local images",
+                    text = "More online Images.",
                     modifier = Modifier.weight(0.3f)
                 )
             }
         }
     }
-
 
 }

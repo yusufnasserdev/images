@@ -24,6 +24,13 @@ class DefaultRootComponent(
         childFactory = ::createChild
     )
 
+    /*
+     * Initially, only pushNew was used for all configuration, however, Decompose StackNavigation doesn't
+     * allow for the same configuration to exist more than once in the stack, so as a work around
+     * I experimented with pushToFront and bringToFront, they both solve the issue and the app doesn't crash
+     * however, the navigation drawer state needs to adjusted as a result.
+     */
+
     private fun createChild(
         config: Configuration, context: ComponentContext
     ): Child = when (config) {

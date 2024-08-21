@@ -1,7 +1,5 @@
-package screens
+package ui.screens
 
-import android.util.Log
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.calculateEndPadding
 import androidx.compose.foundation.layout.calculateStartPadding
@@ -13,62 +11,56 @@ import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.NavigationDrawerItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.rememberDrawerState
+import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalLayoutDirection
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import navigation.events.MainScreenEvent
-import navigation.screenscomponents.MainScreenComponent
-import screens.util.AppTopBar
+import navigation.events.LocalImagesScreenEvent
+import navigation.screenscomponents.LocalImagesScreenComponent
+import ui.util.AppTopBar
 
 @Composable
-fun MainScreen(
-    component: MainScreenComponent,
+fun LocalImagesScreen(
+    component: LocalImagesScreenComponent,
     layoutDirection: LayoutDirection = LocalLayoutDirection.current
 ) {
+
     ModalNavigationDrawer(
         drawerContent = {
             ModalDrawerSheet {
                 Text("Screens", modifier = Modifier.padding(16.dp))
 
-                HorizontalDivider(
-                    modifier = Modifier.padding(2.dp)
-                )
+                HorizontalDivider()
 
                 NavigationDrawerItem(
                     label = { Text(text = "Main Screen") },
-                    selected = true,
-                    onClick = {}
+                    selected = false,
+                    onClick = {component.onEvent(LocalImagesScreenEvent.NavToMainScreenButton)}
                 )
 
                 NavigationDrawerItem(
                     label = { Text(text = "Local Images") },
-                    selected = false,
-                    onClick = {
-                        Log.i("Nav", "trying to go local from drawer")
-                        component.onEvent(MainScreenEvent.NavToLocalImagesScreenButton)
-                    }
+                    selected = true,
+                    onClick = {}
                 )
 
                 NavigationDrawerItem(
                     label = { Text(text = "Online Images") },
                     selected = false,
                     onClick = {
-                        component.onEvent(MainScreenEvent.NavToOnlineImagesScreenButton)
+                        component.onEvent(LocalImagesScreenEvent.NavToOnlineImagesScreenButton)
                     }
                 )
+
             }
         }
     ) {
 
         Scaffold(
             modifier = Modifier.fillMaxSize(),
-            topBar = { AppTopBar(screenTitle = "Main Screen") }
+            topBar = { AppTopBar(screenTitle = "Local Images") }
         ) { innerPadding ->
             Column(
                 modifier = Modifier
@@ -78,26 +70,20 @@ fun MainScreen(
                         bottom = innerPadding.calculateBottomPadding() + 16.dp,
                         start = innerPadding.calculateStartPadding(layoutDirection) + 16.dp,
                         end = innerPadding.calculateEndPadding(layoutDirection) + 16.dp
-                    ),
-                verticalArrangement = Arrangement.SpaceAround,
-                horizontalAlignment = Alignment.CenterHorizontally
+                    )
             ) {
-
                 Text(
-                    text = "Welcome to Images App",
-                    fontSize = 24.sp
+                    text = "Local Images",
+                    modifier = Modifier.weight(0.5f)
                 )
-
-                HorizontalDivider()
-
+                VerticalDivider(modifier = Modifier.weight(0.2f))
                 Text(
-                    text = "You can use the drawer to navigate to your local images or random online ones.",
-                    fontSize = 18.sp,
-                    textAlign = TextAlign.Center
+                    text = "More local images",
+                    modifier = Modifier.weight(0.3f)
                 )
             }
         }
     }
 
-}
 
+}
