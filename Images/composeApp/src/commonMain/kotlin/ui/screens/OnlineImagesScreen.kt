@@ -1,10 +1,16 @@
 package ui.screens
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.calculateEndPadding
 import androidx.compose.foundation.layout.calculateStartPadding
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
@@ -17,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
 import navigation.events.OnlineImagesScreenEvent
 import navigation.screenscomponents.OnlineImagesScreenComponent
 import ui.util.AppTopBar
@@ -26,6 +33,8 @@ fun OnlineImagesScreen(
     component: OnlineImagesScreenComponent,
     layoutDirection: LayoutDirection = LocalLayoutDirection.current
 ) {
+    val lazyGridState = rememberLazyGridState()
+
     ModalNavigationDrawer(
         drawerContent = {
             ModalDrawerSheet {
@@ -72,15 +81,27 @@ fun OnlineImagesScreen(
                         end = innerPadding.calculateEndPadding(layoutDirection) + 16.dp
                     )
             ) {
-                Text(
-                    text = "Online Images",
-                    modifier = Modifier.weight(0.5f)
-                )
-                VerticalDivider(modifier = Modifier.weight(0.2f))
-                Text(
-                    text = "More online Images.",
-                    modifier = Modifier.weight(0.3f)
-                )
+                LazyVerticalGrid(
+                    columns = GridCells.Fixed(2),
+                    // content padding
+                    contentPadding = PaddingValues(
+                        start = 12.dp,
+                        top = 16.dp,
+                        end = 12.dp,
+                        bottom = 16.dp
+                    ),
+                    state = lazyGridState
+                ) {
+                    items(20) {
+                        AsyncImage(
+                            model = "https://random.imagecdn.app/500/500",
+                            contentDescription = null,
+                            modifier = Modifier.fillMaxWidth()
+                                .padding(8.dp)
+                                .aspectRatio(1f)
+                        )
+                    }
+                }
             }
         }
     }

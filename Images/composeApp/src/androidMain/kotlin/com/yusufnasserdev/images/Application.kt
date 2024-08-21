@@ -10,21 +10,13 @@ import coil.util.DebugLogger
 
 class Application : Application(), ImageLoaderFactory {
     override fun newImageLoader(): ImageLoader {
+
+        // CachePolicy.DISABLED prevents caching to allow for images to be
+        // constantly updated for a refreshing experience.
+
         return ImageLoader(this).newBuilder()
-            .memoryCachePolicy(CachePolicy.ENABLED)
-            .memoryCache {
-                MemoryCache.Builder(this)
-                    .maxSizePercent(0.1)
-                    .strongReferencesEnabled(true)
-                    .build()
-            }
-            .diskCachePolicy(CachePolicy.ENABLED)
-            .diskCache {
-                DiskCache.Builder()
-                    .maxSizePercent(0.04)
-                    .directory(cacheDir)
-                    .build()
-            }
+            .memoryCachePolicy(CachePolicy.DISABLED)
+            .diskCachePolicy(CachePolicy.DISABLED)
             .logger(DebugLogger())
             .build()
     }

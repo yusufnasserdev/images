@@ -49,7 +49,6 @@ fun MainScreen(
                     label = { Text(text = "Local Images") },
                     selected = false,
                     onClick = {
-                        Log.i("Nav", "trying to go local from drawer")
                         component.onEvent(MainScreenEvent.NavToLocalImagesScreenButton)
                     }
                 )
