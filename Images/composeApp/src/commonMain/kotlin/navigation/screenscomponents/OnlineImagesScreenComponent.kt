@@ -11,8 +11,8 @@ class OnlineImagesScreenComponent (
 
     fun onEvent(event: OnlineImagesScreenEvent) {
         when (event) {
-            OnlineImagesScreenEvent.NavToMainScreenButton -> onNavigateToMainScreen
-            OnlineImagesScreenEvent.NavToLocalImagesScreenButton -> onNavigateToLocalImagesScreen
+            OnlineImagesScreenEvent.NavToMainScreenButton -> onNavigateToMainScreen.invoke()
+            OnlineImagesScreenEvent.NavToLocalImagesScreenButton -> onNavigateToLocalImagesScreen.invoke()
         }
     }
 

@@ -17,29 +17,66 @@ kotlin {
             jvmTarget.set(JvmTarget.JVM_11)
         }
     }
-    
+
     sourceSets {
-        
+
         androidMain.dependencies {
+
+            implementation(compose.runtime)
+            implementation(compose.foundation)
+            implementation(compose.material3)
+            implementation(compose.ui)
             implementation(compose.preview)
+            implementation(compose.components.resources)
+            implementation(compose.components.uiToolingPreview)
+
+            implementation(libs.androidx.core.ktx)
             implementation(libs.androidx.activity.compose)
+            implementation(libs.androidx.lifecycle.runtime.compose)
+            implementation(libs.androidx.appcompat)
+
+            implementation(libs.kotlinx.serialization.json)
+            implementation(libs.kotlinx.coroutines.android)
+
             implementation(libs.arkivanov.decompose)
+            implementation(libs.arkivanov.decompose.extensions.compose)
             implementation(libs.arkivanov.mvikotlin)
+            implementation(libs.arkivanov.mvikotlin.main)
+            implementation(libs.arkivanov.mvikotlin.logging)
+            implementation(libs.arkivanov.mvikotlin.timetravel)
+            implementation(libs.arkivanov.mvikotlin.extensions.reaktive)
+            implementation(libs.arkivanov.essenty.lifecycle)
+
             implementation(libs.coil.compose)
         }
 
         commonMain.dependencies {
+
             implementation(compose.runtime)
             implementation(compose.foundation)
-            implementation(compose.material)
+            implementation(compose.material3)
             implementation(compose.ui)
+            implementation(compose.preview)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
-            implementation(libs.androidx.lifecycle.viewmodel)
+
+            implementation(libs.androidx.core.ktx)
+            implementation(libs.androidx.activity.compose)
             implementation(libs.androidx.lifecycle.runtime.compose)
+            implementation(libs.androidx.appcompat)
+
             implementation(libs.kotlinx.serialization.json)
+            implementation(libs.kotlinx.coroutines.android)
+
             implementation(libs.arkivanov.decompose)
+            implementation(libs.arkivanov.decompose.extensions.compose)
             implementation(libs.arkivanov.mvikotlin)
+            implementation(libs.arkivanov.mvikotlin.main)
+            implementation(libs.arkivanov.mvikotlin.logging)
+            implementation(libs.arkivanov.mvikotlin.timetravel)
+            implementation(libs.arkivanov.mvikotlin.extensions.reaktive)
+            implementation(libs.arkivanov.essenty.lifecycle)
+
             implementation(libs.coil.compose)
         }
     }

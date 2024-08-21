@@ -1,25 +1,30 @@
 [versions]
-agp = "8.2.2"
+agp = "8.2.0"
 android-compileSdk = "34"
 android-minSdk = "24"
 android-targetSdk = "34"
 androidx-activityCompose = "1.9.1"
 androidx-appcompat = "1.7.0"
-androidx-constraintlayout = "2.1.4"
 androidx-core-ktx = "1.13.1"
 androidx-espresso-core = "3.6.1"
 androidx-lifecycle = "2.8.0"
 androidx-material = "1.12.0"
 androidx-test-junit = "1.2.1"
 coilCompose = "2.4.0"
-compose-plugin = "1.6.11"
 junit = "4.13.2"
 kotlin = "2.0.0"
-kotlinxSerializationJson = "1.6.3"
 
+coroutines = "1.8.1"
+compose = "1.6.11"
+android-tools-build-gradle = "8.5.1"
 arkivanov-mvikotlin = "4.0.0"
 arkivanov-decompose = "3.1.0"
 arkivanov-essenty = "2.1.0"
+badoo-reaktive = "2.2.0"
+sqldelight = "2.0.2"
+kotlin-serialization = "1.7.1"
+
+
 
 [libraries]
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
@@ -31,11 +36,11 @@ androidx-test-junit = { group = "androidx.test.ext", name = "junit", version.ref
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidx-espresso-core" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidx-appcompat" }
 androidx-material = { group = "com.google.android.material", name = "material", version.ref = "androidx-material" }
-androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "androidx-constraintlayout" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
 androidx-lifecycle-viewmodel = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-runtime-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
-kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
+kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlin-serialization" }
 
 
 # ArkIvanov libraries
@@ -48,10 +53,22 @@ arkivanov-decompose = { module = "com.arkivanov.decompose:decompose", version.re
 arkivanov-decompose-extensions-compose = { module = "com.arkivanov.decompose:extensions-compose", version.ref = "arkivanov-decompose" }
 arkivanov-essenty-lifecycle = { module = "com.arkivanov.essenty:lifecycle", version.ref = "arkivanov-essenty" }
 
+# Badoo libraries
+badoo-reaktive = { module = "com.badoo.reaktive:reaktive", version.ref = "badoo-reaktive" }
+badoo-reaktive-coroutines-interop = { module = "com.badoo.reaktive:coroutines-interop", version.ref = "badoo-reaktive" }
+badoo-reaktive-testing = { module = "com.badoo.reaktive:reaktive-testing", version.ref = "badoo-reaktive" }
+
+# Squareup libraries
+squareup-sqldelight-gradle-plugin = { module = "app.cash.sqldelight:gradle-plugin", version.ref = "sqldelight" }
+squareup-sqldelight-sqlite-driver = { module = "app.cash.sqldelight:sqlite-driver", version.ref = "sqldelight" }
+squareup-sqldelight-android-driver = { module = "app.cash.sqldelight:android-driver", version.ref = "sqldelight" }
+squareup-sqldelight-native-driver = { module = "app.cash.sqldelight:native-driver", version.ref = "sqldelight" }
+squareup-sqldelight-webworker-driver = { module = "app.cash.sqldelight:web-worker-driver", version.ref = "sqldelight" }
+
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
-jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }
+jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
