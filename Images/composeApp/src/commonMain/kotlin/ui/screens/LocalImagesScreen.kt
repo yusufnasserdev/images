@@ -1,6 +1,5 @@
 package ui.screens
 
-import android.net.Uri
 import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -20,7 +19,6 @@ import androidx.compose.material3.NavigationDrawerItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.unit.LayoutDirection
@@ -30,7 +28,6 @@ import com.yusufnasserdev.images.R
 import navigation.events.LocalImagesScreenEvent
 import navigation.screenscomponents.LocalImagesScreenComponent
 import ui.util.AppTopBar
-import java.io.File
 
 
 @Composable
@@ -45,6 +42,7 @@ fun LocalImagesScreen(
         R.drawable.p0,
         R.drawable.p1,
         R.drawable.p2,
+        R.drawable.alg,
         R.drawable.p3,
         R.drawable.p4,
         R.drawable.p6,
@@ -110,7 +108,7 @@ drawerContent = {
                 ),
                 state = lazyGridState
             ) {
-                items(10) { imgIdx ->
+                items(localImages.size) { imgIdx ->
                     Log.i("LocalImg", localImages[imgIdx].toString())
                     AsyncImage(
                         model = localImages[imgIdx],

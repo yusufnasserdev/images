@@ -35,6 +35,11 @@ fun OnlineImagesScreen(
 ) {
     val lazyGridState = rememberLazyGridState()
 
+    val onlineImages = listOf(
+        "https://random.imagecdn.app/500/500",
+        "https://www.svgrepo.com/show/530663/protein.svg"
+    )
+
     ModalNavigationDrawer(
         drawerContent = {
             ModalDrawerSheet {
@@ -92,9 +97,9 @@ fun OnlineImagesScreen(
                     ),
                     state = lazyGridState
                 ) {
-                    items(20) {
+                    items(onlineImages.size) { idx ->
                         AsyncImage(
-                            model = "https://random.imagecdn.app/500/500",
+                            model = onlineImages[idx],
                             contentDescription = null,
                             modifier = Modifier.fillMaxWidth()
                                 .padding(8.dp)
