@@ -48,6 +48,7 @@ kotlin {
             implementation(libs.arkivanov.essenty.lifecycle)
 
             implementation(libs.coil.compose)
+            implementation(libs.coil.svg)
         }
 
         commonMain.dependencies {
@@ -78,6 +79,8 @@ kotlin {
             implementation(libs.arkivanov.essenty.lifecycle)
 
             implementation(libs.coil.compose)
+            implementation(libs.coil.svg)
+
         }
     }
 }
