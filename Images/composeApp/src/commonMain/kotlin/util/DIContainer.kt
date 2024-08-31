@@ -17,6 +17,10 @@ import org.kodein.di.instance
 import root.RootComponent
 import root.integration.DefaultRootComponent
 
+/**
+ * Using Kodein and Dependency Injection for easier dependencies management instead of having
+ * to inject them manually, also eases the way for testing modules when implemented.
+ */
 
 val kodeinDI = DI {
     // Repository

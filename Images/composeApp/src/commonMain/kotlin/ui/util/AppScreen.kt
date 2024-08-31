@@ -19,7 +19,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.yusufnasserdev.images.R
 import data.Image
+import androidx.compose.ui.res.painterResource
 
 
 /**
@@ -32,23 +34,25 @@ enum class Screens {
 
 
 /**
+ * Provides a FAB to facilitate navigation between screens
  *
+ * Mainly implemented to improve readability.
+ *
+ * @param onNav lambda for the navigation callback
+ * @param goToScreen The destination screen name
+ *
+ * @return FAB to navigate between screens
  */
 
 @Composable
 private fun NavFab(
-    onNav: () -> Unit,
-    goToScreen: String
+    onNav: () -> Unit, goToScreen: String
 ) {
-    FloatingActionButton(
-        modifier = Modifier.padding(
-            vertical = 8.dp,
-            horizontal = 8.dp
-        ),
-        onClick = { onNav() }) {
+    FloatingActionButton(modifier = Modifier.padding(
+        vertical = 8.dp, horizontal = 8.dp
+    ), onClick = { onNav() }) {
         Text(
-            modifier = Modifier.padding(horizontal = 12.dp),
-            text = "To $goToScreen Images"
+            modifier = Modifier.padding(horizontal = 12.dp), text = "To $goToScreen Images"
         )
     }
 }
@@ -64,9 +68,7 @@ private fun NavFab(
 
 @Composable
 fun AppScreen(
-    screen: Screens,
-    imagesSourceList: List<Image>,
-    onNav: () -> Unit
+    screen: Screens, imagesSourceList: List<Image>, onNav: () -> Unit
 ) {
 
     val currentScreen = if (screen == Screens.LOCAL) "Local" else "Online"
@@ -99,7 +101,6 @@ fun AppScreen(
              * in the component’s viewport
              */
 
-
             LazyVerticalGrid(
                 columns = GridCells.Fixed(2),
                 contentPadding = PaddingValues(horizontal = 12.dp, vertical = 16.dp),
@@ -109,6 +110,8 @@ fun AppScreen(
                     AsyncImage(
                         model = imagesSourceList[imgIdx].url,
                         contentDescription = null,
+                        placeholder = painterResource(id = R.drawable.ph),
+                        error = painterResource(id = R.drawable.err),
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(8.dp)
