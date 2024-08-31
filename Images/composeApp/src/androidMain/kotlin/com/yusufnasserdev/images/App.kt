@@ -8,9 +8,9 @@ import com.arkivanov.decompose.extensions.compose.stack.animation.plus
 import com.arkivanov.decompose.extensions.compose.stack.animation.scale
 import com.arkivanov.decompose.extensions.compose.stack.animation.stackAnimation
 import com.arkivanov.decompose.extensions.compose.subscribeAsState
-import navigation.DefaultRootComponent
+import root.integration.DefaultRootComponent
+import root.integration.RootComponent.Child
 import ui.screens.LocalImagesScreen
-import ui.screens.MainScreen
 import ui.screens.OnlineImagesScreen
 
 
@@ -23,15 +23,12 @@ fun App(rootComponent: DefaultRootComponent) {
         animation = stackAnimation(fade() + scale()),
     ) { child ->
         when (val childInstance = child.instance) {
-            is DefaultRootComponent.Child.MainScreen -> MainScreen(
+
+            is Child.LocalImagesScreen -> LocalImagesScreen(
                 component = childInstance.component
             )
 
-            is DefaultRootComponent.Child.LocalImagesScreen -> LocalImagesScreen(
-                component = childInstance.component
-            )
-
-            is DefaultRootComponent.Child.OnlineImagesScreen -> OnlineImagesScreen(
+            is Child.OnlineImagesScreen -> OnlineImagesScreen(
                 component = childInstance.component
             )
         }

@@ -7,6 +7,12 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 
+/**
+ * Displays a top bar for the screen with its name.
+ *
+ * @param screenTitle the Title of the screen to be displayed in the top bar.
+ */
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppTopBar(
