@@ -8,14 +8,14 @@ import com.arkivanov.decompose.extensions.compose.stack.animation.plus
 import com.arkivanov.decompose.extensions.compose.stack.animation.scale
 import com.arkivanov.decompose.extensions.compose.stack.animation.stackAnimation
 import com.arkivanov.decompose.extensions.compose.subscribeAsState
-import root.integration.DefaultRootComponent
-import root.integration.RootComponent.Child
+import root.RootComponent
+import root.RootComponent.Child
 import ui.screens.LocalImagesScreen
 import ui.screens.OnlineImagesScreen
 
 
 @Composable
-fun App(rootComponent: DefaultRootComponent) {
+fun App(rootComponent: RootComponent) {
     val childStack by rootComponent.childStack.subscribeAsState()
 
     Children(

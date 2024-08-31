@@ -44,10 +44,13 @@ kotlin {
             implementation(libs.arkivanov.mvikotlin.logging)
             implementation(libs.arkivanov.mvikotlin.timetravel)
             implementation(libs.arkivanov.mvikotlin.extensions.reaktive)
+            implementation(libs.arkivanov.mvikotlin.extensions.coroutines)
             implementation(libs.arkivanov.essenty.lifecycle)
 
             implementation(libs.coil.compose)
             implementation(libs.coil.svg)
+            implementation(libs.kodein.di)
+
         }
 
         commonMain.dependencies {
@@ -75,10 +78,12 @@ kotlin {
             implementation(libs.arkivanov.mvikotlin.logging)
             implementation(libs.arkivanov.mvikotlin.timetravel)
             implementation(libs.arkivanov.mvikotlin.extensions.reaktive)
+            implementation(libs.arkivanov.mvikotlin.extensions.coroutines)
             implementation(libs.arkivanov.essenty.lifecycle)
 
             implementation(libs.coil.compose)
             implementation(libs.coil.svg)
+            implementation(libs.kodein.di)
 
         }
     }

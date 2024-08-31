@@ -1,16 +1,40 @@
 package online.integration
 
+import util.asValue
 import com.arkivanov.decompose.ComponentContext
-import com.arkivanov.decompose.value.MutableValue
 import com.arkivanov.decompose.value.Value
-import online.OnlineImage
+import com.arkivanov.decompose.value.operator.map
+import com.arkivanov.mvikotlin.core.instancekeeper.getStore
+import data.Image
+import online.store.OnlineImagesStoreFactory
 
-class DefaultOnlineScreenComponent (
+class DefaultOnlineScreenComponent(
     componentContext: ComponentContext,
-    onlineImage: OnlineImage,
+    private val onlineImagesStoreFactory: OnlineImagesStoreFactory,
     private val onNavigateToLocalImagesScreen: () -> Unit
 ) : OnlineScreenComponent, ComponentContext by componentContext {
 
-    override val model: Value<OnlineImage> = MutableValue(onlineImage)
-    override fun onNavToLocal() { onNavigateToLocalImagesScreen.invoke() }
+
+    private val store = instanceKeeper.getStore { onlineImagesStoreFactory.create() }
+    override val model: Value<List<Image>> = store.asValue().map { it.items }
+
+
+    override fun onNavToLocal() {
+        onNavigateToLocalImagesScreen.invoke()
+    }
+
+    class Factory(
+        private val onlineImagesStoreFactory: OnlineImagesStoreFactory
+    ) : OnlineScreenComponent.Factory {
+        override fun invoke(
+            componentContext: ComponentContext, navToLocalFabClicked: () -> Unit
+        ): OnlineScreenComponent {
+            return DefaultOnlineScreenComponent(
+                componentContext = componentContext,
+                onNavigateToLocalImagesScreen = navToLocalFabClicked,
+                onlineImagesStoreFactory = onlineImagesStoreFactory
+            )
+        }
+    }
+
 }

@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import data.Image
 
 
 /**
@@ -27,6 +28,29 @@ import coil.compose.AsyncImage
 
 enum class Screens {
     LOCAL, ONLINE
+}
+
+
+/**
+ *
+ */
+
+@Composable
+private fun NavFab(
+    onNav: () -> Unit,
+    goToScreen: String
+) {
+    FloatingActionButton(
+        modifier = Modifier.padding(
+            vertical = 8.dp,
+            horizontal = 8.dp
+        ),
+        onClick = { onNav() }) {
+        Text(
+            modifier = Modifier.padding(horizontal = 12.dp),
+            text = "To $goToScreen Images"
+        )
+    }
 }
 
 
@@ -41,7 +65,7 @@ enum class Screens {
 @Composable
 fun AppScreen(
     screen: Screens,
-    imagesSourceList: List<String>,
+    imagesSourceList: List<Image>,
     onNav: () -> Unit
 ) {
 
@@ -54,16 +78,7 @@ fun AppScreen(
 
     Scaffold(modifier = Modifier.fillMaxSize(),
         topBar = { AppTopBar(screenTitle = "$currentScreen Images") },
-        floatingActionButton = {
-            FloatingActionButton(
-                modifier = Modifier.padding(
-                    vertical = 4.dp,
-                    horizontal = 4.dp
-                ),
-                onClick = { onNav() }) {
-                Text(text = "To $goToScreen Images")
-            }
-        }) { innerPadding ->
+        floatingActionButton = { NavFab(onNav, goToScreen) }) { innerPadding ->
 
         // Creating a `Column` inside of `Scaffold` allow for better and more controlled view
 
@@ -92,7 +107,7 @@ fun AppScreen(
             ) {
                 items(imagesSourceList.size) { imgIdx ->
                     AsyncImage(
-                        model = imagesSourceList[imgIdx],
+                        model = imagesSourceList[imgIdx].url,
                         contentDescription = null,
                         modifier = Modifier
                             .fillMaxWidth()

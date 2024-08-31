@@ -1,6 +1,8 @@
 package ui.screens
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import com.arkivanov.decompose.extensions.compose.subscribeAsState
 import online.integration.OnlineScreenComponent
 import ui.util.AppScreen
 import ui.util.Screens
@@ -9,12 +11,11 @@ import ui.util.Screens
 fun OnlineImagesScreen(
     component: OnlineScreenComponent
 ) {
-    val onlineImages = listOf(
-        "https://random.imagecdn.app/500/500", "https://www.svgrepo.com/show/530663/protein.svg"
-    )
+
+    val state by component.model.subscribeAsState()
 
     AppScreen(screen = Screens.ONLINE,
-        imagesSourceList = onlineImages,
+        imagesSourceList = state,
         onNav = { component.onNavToLocal() })
 }
 

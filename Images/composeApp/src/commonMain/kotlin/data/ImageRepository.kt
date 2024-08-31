@@ -24,36 +24,31 @@ interface ImageRepository {
      * @return A flow of List of Strings that represents the URLs of the intended images.
      */
 
-    fun getAllImages(): Flow<List<Image>>
+    fun getAllLocalImages(): Flow<List<Image>>
+    fun getAllOnlineImages(): Flow<List<Image>>
 }
 
-class LocalImageRepository : ImageRepository {
+class DefaultImageRepository : ImageRepository {
 
-    private val images = MutableStateFlow(
-        listOf(
-            R.drawable.p0, //JPG
-            R.drawable.p1, //JPG
-            R.drawable.p2, //JPG
-            R.drawable.alg, //SVG
-            R.drawable.p3, //JPG
-            R.drawable.p4, //JPG
-            R.drawable.p6, //JPG
-            R.drawable.p7, //JPG
-            R.drawable.p8, //JPG
-            R.drawable.build, //SVG
-            R.drawable.p9, //JPG
-            R.drawable.p5 //JPG
-        ).map { Image(getPath(it)) } // Mapping drawable resource IDs to their paths.
+    private val localImages = MutableStateFlow(listOf(
+        R.drawable.p0, //JPG
+        R.drawable.p1, //JPG
+        R.drawable.p2, //JPG
+        R.drawable.alg, //SVG
+        R.drawable.p3, //JPG
+        R.drawable.p4, //JPG
+        R.drawable.p6, //JPG
+        R.drawable.p7, //JPG
+        R.drawable.p8, //JPG
+        R.drawable.build, //SVG
+        R.drawable.p9, //JPG
+        R.drawable.p5 //JPG
+    ).map { Image(getPath(it)) } // Mapping drawable resource IDs to their paths.
     )
 
-    override fun getAllImages(): Flow<List<Image>> = images
 
-}
-
-class OnlineImageRepository : ImageRepository {
     private val onlineImages = MutableStateFlow(
         listOf(
-            Image("https://loremflickr.com/cache/resized/65535_53456925841_c8def9194d_c_500_500_nofilter.jpg"),
             Image("https://fastly.picsum.photos/id/654/500/500.jpg?hmac=kgpTNBLWV4m-_q3UocuHI4AjklIGOB5U_fE0mfErB88"),
             Image("https://fastly.picsum.photos/id/524/500/500.jpg?hmac=z2uVLm01qVMf28HEDb_MReUAvHbG0uylevoJupVdCqA"),
             Image("https://loremflickr.com/cache/resized/65535_53629729913_fe44eb7708_c_500_500_nofilter.jpg"),
@@ -73,6 +68,7 @@ class OnlineImageRepository : ImageRepository {
         )
     )
 
-    override fun getAllImages(): Flow<List<Image>> = onlineImages
+    override fun getAllLocalImages(): Flow<List<Image>> = localImages
+    override fun getAllOnlineImages(): Flow<List<Image>> = onlineImages
 
 }

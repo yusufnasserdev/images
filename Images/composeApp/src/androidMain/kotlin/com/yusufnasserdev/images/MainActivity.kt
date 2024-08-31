@@ -5,17 +5,18 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import com.arkivanov.decompose.retainedComponent
+import com.arkivanov.decompose.defaultComponentContext
 import com.yusufnasserdev.images.theme.ComposeAppTheme
-import root.integration.DefaultRootComponent
+import org.kodein.di.instance
+import util.kodeinDI
+import root.RootComponent
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val rootComponent = retainedComponent {
-            DefaultRootComponent(it)
-        }
+        val rootComponentFactory: RootComponent.Factory by kodeinDI.instance()
+        val rootComponent = rootComponentFactory(defaultComponentContext())
 
         setContent {
             ComposeAppTheme {
