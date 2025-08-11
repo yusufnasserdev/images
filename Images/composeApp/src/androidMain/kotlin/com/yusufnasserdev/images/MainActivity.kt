@@ -8,8 +8,8 @@ import androidx.compose.material3.Surface
 import com.arkivanov.decompose.defaultComponentContext
 import com.yusufnasserdev.images.theme.ComposeAppTheme
 import org.kodein.di.instance
-import util.kodeinDI
-import root.RootComponent
+import di.kodeinDI
+import presentation.root.RootComponent
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

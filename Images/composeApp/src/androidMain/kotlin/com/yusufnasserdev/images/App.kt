@@ -8,10 +8,10 @@ import com.arkivanov.decompose.extensions.compose.stack.animation.plus
 import com.arkivanov.decompose.extensions.compose.stack.animation.scale
 import com.arkivanov.decompose.extensions.compose.stack.animation.stackAnimation
 import com.arkivanov.decompose.extensions.compose.subscribeAsState
-import root.RootComponent
-import root.RootComponent.Child
-import ui.screens.LocalImagesScreen
-import ui.screens.OnlineImagesScreen
+import presentation.root.RootComponent
+import presentation.root.RootComponent.Child
+import presentation.screens.local.LocalImagesScreen
+import presentation.screens.online.OnlineImagesScreen
 
 
 @Composable
