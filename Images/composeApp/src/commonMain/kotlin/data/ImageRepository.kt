@@ -30,20 +30,21 @@ interface ImageRepository {
 
 class DefaultImageRepository : ImageRepository {
 
-    private val localImages = MutableStateFlow(listOf(
-        R.drawable.p0, //JPG
-        R.drawable.p1, //JPG
-        R.drawable.p2, //JPG
-        R.drawable.alg, //SVG
-        R.drawable.p3, //JPG
-        R.drawable.p4, //JPG
-        R.drawable.p6, //JPG
-        R.drawable.p7, //JPG
-        R.drawable.p8, //JPG
-        R.drawable.build, //SVG
-        R.drawable.p9, //JPG
-        R.drawable.p5 //JPG
-    ).map { Image(getPath(it)) } // Mapping drawable resource IDs to their paths.
+    private val localImages = MutableStateFlow(
+        listOf(
+            R.drawable.p0, //JPG
+            R.drawable.p1, //JPG
+            R.drawable.p2, //JPG
+            R.drawable.alg, //SVG
+            R.drawable.p3, //JPG
+            R.drawable.p4, //JPG
+            R.drawable.p6, //JPG
+            R.drawable.p7, //JPG
+            R.drawable.p8, //JPG
+            R.drawable.build, //SVG
+            R.drawable.p9, //JPG
+            R.drawable.p5 //JPG
+        ).map { Image(getPath(it)) } // Mapping drawable resource IDs to their paths.
     )
 
 
